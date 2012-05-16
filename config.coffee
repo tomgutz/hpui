@@ -1,0 +1,56 @@
+exports.config =
+	# See docs at http://brunch.readthedocs.org/en/latest/config.html.
+
+	# Edit the next line to change default build path.
+	paths:
+		public: 'public'
+
+	files:
+		javascripts:
+			# Defines what file will be generated with `brunch generate`.
+			defaultExtension: 'coffee'
+			# Describes how files will be compiled & joined together.
+			# Available formats:
+			# * 'outputFilePath'
+			# * map of ('outputFilePath': /regExp that matches input path/)
+			# * map of ('outputFilePath': function that takes input path)
+			joinTo:
+				'javascripts/app.js': /^app/
+				'javascripts/vendor.js': /^vendor\/scripts\/common/
+				'javascripts/ie.js': /^vendor\/scripts\/ie/
+				#'javascripts/polyfill.js': /^vendor\/scripts\/polyfill/
+				# Defines compilation order.
+			# `vendor` files will be compiled before other ones
+			# even if they are not present here.
+			order:
+				before: [
+					'vendor/scripts/common/console-helper.js',
+					'vendor/scripts/common/jquery-1.7.2.js',
+					'vendor/scripts/common/underscore-1.3.3.js',
+					'vendor/scripts/common/backbone-0.9.2.js',
+					'vendor/scripts/common/foundation.js'
+				]
+
+		stylesheets:
+			defaultExtension: 'styl'
+			joinTo: 'stylesheets/app.css'
+			order:
+				before: ['vendor/styles/foundation.css']
+				#after: ['vendor/styles/helpers.css']
+
+		templates:
+			defaultExtension: 'hbs'
+			joinTo: 'javascripts/app.js'
+
+  # Change this if you're using something other than backbone (e.g. 'ember').
+  # Content of files, generated with `brunch generate` depends on the setting.
+  # framework: 'backbone'
+
+  # Settings of web server that will run with `brunch watch [--server]`.
+  # server:
+  #	  # Path to your server node.js module.
+  #	  # If it's commented-out, brunch will use built-in express.js server.
+  #	  path: 'server.coffee'
+  #	  port: 3333
+  #	  # Run even without `--server` option?
+  #	  run: yes
