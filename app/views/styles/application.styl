@@ -5,4 +5,29 @@
 // Apply a natural box layout model to all elements.
 // http://paulirish.com/2012/box-sizing-border-box-ftw/
 *
-  box-sizing: border-box
+	box-sizing: border-box
+	
+html, body
+	height: 100%
+
+body
+	background: #aaa
+
+.login-box-positioner
+	width: 10px
+	height: 50%
+	margin-bottom: -170px
+	float: left
+
+.login-box
+	position: relative
+	width: 560px
+	height: 340px
+	margin: 0 auto
+	clear: left
+	background: #000 url(../images/login.bg.jpg) 100% 100% no-repeat
+	background-position: -200px 0
+	border: 4px solid #999
+	border-radius: 8px
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.6)
+	
