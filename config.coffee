@@ -17,7 +17,7 @@ exports.config =
 			joinTo:
 				'javascripts/app.js': /^app/
 				'javascripts/vendor.js': /^vendor\/scripts\/common/
-				'javascripts/ie.js': /^vendor\/scripts\/ie/
+				'javascripts/ie/ie.js': /^vendor\/scripts\/ie/
 				#'javascripts/polyfill.js': /^vendor\/scripts\/polyfill/
 				# Defines compilation order.
 			# `vendor` files will be compiled before other ones
