@@ -1,0 +1,45 @@
+@import 'nib'
+
+form#login
+	text-align: center
+	width: 450px
+	h2
+		color: #5d5d5d
+		text-shadow: 1px 1px 1px white
+		padding-top: 30px
+	h6
+		color: #b7b7b7
+		padding-bottom: 30px
+	input
+		display: inline
+		&[type=text]
+			width: 175px
+		&[type=password]
+			width: 145px
+			margin: 0 4px 0 4px
+		&[type=checkbox]
+			display: inline
+			float: right
+			margin-left: 4px
+	label
+		display: inline
+		float: right
+			
+
+@media only screen and (max-width: 767px)
+	form#login
+		text-align: left
+		width: 100%
+		padding: 10px 20px
+		img
+			float: left;
+			max-width: 100px
+			margin-right: 20px
+		h2
+			padding-top: 10px
+		h6
+			padding: 0 0 20px 0
+		input
+				display: block
+				width: 100% !important
+				margin: 0 0 10px 0 !important

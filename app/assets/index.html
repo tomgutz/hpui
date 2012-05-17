@@ -29,21 +29,18 @@
 	<script>require('initialize');</script>
 
 </head>
-<body class="container">
+<body>
 	
-	<div class="login-box-positioner"></div>
-    <div class="login-box">
-		<div>
-	    	<img src="images/logo.png" class="logo" />
-			<h2>HP Cloud Portal</h2>
-		</div>
-		<form action="#" method="post" class="nice">
-		    <input type="text" name="username" class="medium input-text" />
-		    <input type="password" name="password" class="medium input-text" />
-		    <input type="submit" value="Login" class="nice radius blue button" />
-		</form>
-    </div>
-
+	<form id="login" action="#" method="post" class="nice">
+		<img src="images/logo.png" />
+		<h2>Enterprise Cloud</h2>
+		<h6>Fuse pouere arcu eros rhoncus sagittis. Lorem ipsum dolor sit amet, consec telur adipi scing elit.</h6>
+		<input type="text" placeholder="Username" name="username" class="input-text" />
+		<input type="password" placeholder="Password" name="password" class="input-text" />
+		<input type="submit" value="Sign in" class="nice radius white button" />
+		<input type="checkbox" name="rememberMe" />
+		<label for="rememberMe">Remember Me</label>
+	</form>
 	
 </body>
 </html>

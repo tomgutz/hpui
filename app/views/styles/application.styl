@@ -11,49 +11,35 @@ html, body
 	height: 100%
 
 body
-	background: #666
+	background: #eee
+	
+	
+// overides foundation.css, but in the future, this is what we want too
+form.nice div.form-field input, form.nice input.input-text, form.nice textarea
+	background: none
+	border: none
+	border-bottom: solid 1px #f7f7f7
+	border-radius: 4px
+	box-shadow: inset 0 0 0.4em #d0d0d0
+	font-size: 14px
+	line-height: 24px
+	padding: 4px 6px
+	color: #3c3c3c
+	outline: none !important
+	
+form.nice div.form-field input:focus, form.nice input.input-text:focus, form.nice textarea:focus
+	background-color: #f9f9f9
+	
+form.nice div.form-field input::-webkit-input-placeholder, form.nice input.input-text::-webkit-input-placeholder, form.nice textarea::-webkit-input-placeholder
+	color: #b7b7b7
+	text-shadow: 1px 1px 1px white
+	
+form.nice div.form-field input:-moz-placeholder, form.nice input.input-text:-moz-placeholder, form.nice input.input-text:-moz-placeholder
+	color: #b7b7b7
+	text-shadow: 1px 1px 1px white
 
-.login-box-positioner
-	width: 10px
-	height: 50%
-	margin-bottom: -170px
-	float: left
-
-.login-box
-	position: relative
-	width: 560px
-	height: 340px
-	margin: 0 auto
-	padding: 2em 2em
-	clear: left
-	background: rgba(0,0,0,1) url(../images/login.bg.jpg) 100% 100% no-repeat
-	background-position: -120px -10px
-	border: 6px solid rgba(255,255,255,0.2)
-	border-radius: 10px
-	box-shadow: 0px 0px 30px rgba(0,0,0,1)
-	img.logo
-		max-height: 100px
-		max-width: 100px
-		float: left
-		& + h2
-			padding-left: 150px
-			color: #ddd
-			line-height: 100px
-	form
-		padding-left: 150px
-		input
-			margin: 1em 0
-
-
-@media only screen and (max-width: 767px)
-	.login-box
-		background: none
-		border: none
-		box-shadow: none
-		img.logo
-			display: none
-			& + h2
-				padding: 0 0
-				text-align: center
-		form
-			padding: 0 0
+/* Text input and textarea, disabled */
+form.nice div.form-field input[disabled], form.nice input.input-text[disabled], form.nice textarea[disabled]
+	box-shadow: none
+	background: rgba(0,0,0,.02)
+	border: inset 1px solid rgba(0,0,0,.075)
