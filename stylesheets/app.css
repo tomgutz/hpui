@@ -1542,15 +1542,6 @@ form#login label {
     width: 100%;
     padding: 10px 20px;
   }
-  form#login .icon-welcomeLogo {
-    -webkit-transform: scale(0.27472527472527475);
-    -moz-transform: scale(0.27472527472527475);
-    -o-transform: scale(0.27472527472527475);
-    -ms-transform: scale(0.27472527472527475);
-    transform: scale(0.27472527472527475);
-    float: left;
-    margin-right: 20px;
-  }
   form#login h2 {
     padding-top: 10px;
   }
