@@ -356,7 +356,7 @@
 		background: #00a6fc;
 		display: inline-block;
 		text-align: center;
-		padding: 7px 34px 9px;
+		padding: 8px 34px;
 		color: #fff;
 		text-decoration: none;
 		font-weight: bold;
@@ -1447,8 +1447,8 @@ form.nice textarea {
   -moz-box-shadow: inset 0 0 0.4em #d0d0d0;
   box-shadow: inset 0 0 0.4em #d0d0d0;
   font-size: 14px;
-  line-height: 24px;
-  padding: 4px 6px;
+  line-height: 14px;
+  padding: 9px 6px;
   color: #3c3c3c;
   outline: none !important;
 }
