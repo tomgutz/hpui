@@ -1426,6 +1426,11 @@ ul.orbit-bullets li.active.has-thumb {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 html,
 body {
@@ -1433,6 +1438,16 @@ body {
 }
 body {
   background: #eee;
+}
+.v-align {
+  text-align: center;
+  height: 100%;
+}
+.v-align:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 form.nice div.form-field input,
 form.nice input.input-text,
@@ -1479,10 +1494,16 @@ form.nice textarea[disabled] {
   background: rgba(0,0,0,0.02);
   border: inset 1px solid rgba(0,0,0,0.07);
 }
+.icon-welcomeLogo {
+  background: url("../images/icons.png") no-repeat 0 -360px;
+  width: 364px;
+  height: 240px;
+}
 form#login {
   text-align: center;
-  width: 450px;
-  margin: 0 auto;
+  width: 460px;
+  display: inline-block;
+  vertical-align: middle;
 }
 form#login h2 {
   color: #5d5d5d;
@@ -1513,14 +1534,21 @@ form#login label {
   float: right;
 }
 @media only screen and (max-width: 767px) {
+  .v-align:before {
+    display: none;
+  }
   form#login {
     text-align: left;
     width: 100%;
     padding: 10px 20px;
   }
-  form#login img {
+  form#login .icon-welcomeLogo {
+    -webkit-transform: scale(0.27472527472527475);
+    -moz-transform: scale(0.27472527472527475);
+    -o-transform: scale(0.27472527472527475);
+    -ms-transform: scale(0.27472527472527475);
+    transform: scale(0.27472527472527475);
     float: left;
-    max-width: 100px;
     margin-right: 20px;
   }
   form#login h2 {
