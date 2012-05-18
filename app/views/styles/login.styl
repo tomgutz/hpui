@@ -1,14 +1,15 @@
 @import 'nib'
 
 .icon-welcomeLogo
-	background: url(../images/icons.png) 0 -360px
+	background: url(../images/icons.png) no-repeat 0 -360px
 	width: 364px
 	height: 240px
 
 form#login
 	text-align: center
-	width: 450px
-	margin: 20px auto
+	width: 460px
+	display: inline-block
+	vertical-align: middle
 	h2
 		color: #5d5d5d
 		text-shadow: 1px 1px 1px white
@@ -30,17 +31,19 @@ form#login
 	label
 		display: inline
 		float: right
-			
+
 
 @media only screen and (max-width: 767px)
+	.v-align:before
+		display: none
+	
 	form#login
 		text-align: left
 		width: 100%
-		margin: auto auto
 		padding: 10px 20px
-		img
+		.icon-welcomeLogo
+			transform: scale(100/364)
 			float: left
-			max-width: 100px
 			margin-right: 20px
 		h2
 			padding-top: 10px

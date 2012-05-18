@@ -14,6 +14,14 @@ html, body
 body
 	background: #eee
 	
+.v-align
+	text-align: center
+	height: 100%
+	&:before
+		content: ''
+		display: inline-block
+		height: 100%
+		vertical-align: middle
 	
 // overides foundation.css, but in the future, this is what we want too
 form.nice div.form-field input, form.nice input.input-text, form.nice textarea
