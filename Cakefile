@@ -1,5 +1,5 @@
 #---Include required libraries---
-fs = require 'fs'
+fs = require 'fs-extra'
 muffin = require 'muffin' # https://github.com/hornairs/muffin
 Q = require 'q' # https://github.com/kriskowal/q
 path = require 'path'
@@ -10,31 +10,26 @@ build = 'build'
 #---Options---
 option '-w', '--watch', 'continue to watch the files and rebuild them when they change'
 option '-m', '--minify', 'minify client side scripts'
+option '-p', '--production', 'build for production (will optimize code)'
 # todo: hook up the the info var to -l compile option
 #option '-l', '--log', 'echo compilation logs'
 
-
-task 'build', 'Build all', (options) ->
-	invoke 'clean'
+task 'build', 'Build all + package', (options) ->
+	invoke 'build.setup'
 	invoke 'build.basic'
-	muffin.run
-		files: "./temp/**/*.*"
-		options: options
-		map: # this has to map to @dir above
-			"./temp/(.*)": (matches) -> muffin.copyFile matches[0], "./#{build}/#{matches[1]}", options
-	
-task 'build.production', 'Build all + minimize all', (options) ->
-	invoke 'clean'
-	invoke 'build.basic'
-	invoke 'package'
+	if options.production
+		invoke 'package.production'
+	else
+		invoke 'package.dev'
 
 task 'build.basic', 'Build the libs, app, and copy assets', (options) ->	
 	invoke 'precompile.all'
+	invoke 'copy.requirejs'
 	invoke 'copy.asset'
 	
-task 'clean', 'Clean the build folder', (options) ->
-	fs.rmdir build, (err) ->
-		console.log err if err.errno isnt 34
+task 'build.setup', 'Setup the env, clean up old builds', (options) ->
+	fs.rmrfSync build, (err) ->
+		console.log err if err?.errno isnt 34
 
 task 'copy.asset', 'Copy assets', (options) ->
 	muffin.run
@@ -42,6 +37,9 @@ task 'copy.asset', 'Copy assets', (options) ->
 		options: options
 		map:
 			'./app/asset/(.*)': (matches) -> muffin.copyFile matches[0], "./#{dir}/#{matches[1]}", options
+			
+task 'copy.requirejs', 'Copy require.js', (options) ->
+	muffin.copyFile './node_modules/requirejs/require.js', "./#{dir}/javascripts/common/require.js"
 
 task 'precompile.all', 'Build CoffeeScript, Stylus, Handlebars', (options) ->
 	invoke 'precompile.vendor'
@@ -79,11 +77,17 @@ task 'precompile.hbs', 'Build Handlebars', (options) ->
 		map:
 			'./app/*/(.+?).hbs': (matches) -> compileHandlebars matches[0], "./#{dir}/javascripts/#{matches[1]}.js", options
 
-task 'package', 'Package using r.js', (options) ->
+task 'package.production', 'Package using r.js', (options) ->
 	console.log "Packaging for development"
 	q = muffin.exec "./node_modules/requirejs/bin/r.js -o ./package.js"
 	Q.when q[1], outputResult
 
+task 'package.dev', 'Package for dev (simply copy over the files)', (options) ->
+	muffin.run
+		files: "./temp/**/*.*"
+		options: options
+		map: # this has to map to @dir above
+			"./temp/(.*)": (matches) -> muffin.copyFile matches[0], "./#{build}/#{matches[1]}", options
 
 
 # Stylus
@@ -91,8 +95,8 @@ task 'package', 'Package using r.js', (options) ->
 # http://learnboost.github.com/stylus/docs/executable.html
 compileStylus = (source, target, options) ->
 	console.log "Compiling Stylus files: #{source}"
-	muffin.mkdir_p target, 0o755, (err) ->
-		if err
+	fs.mkdir target, 0o755, (err) ->
+		if err?.errno isnt 47
 			console.log err
 			return
 		q = muffin.exec "./node_modules/stylus/bin/stylus -o #{target} -u ./node_modules/nib/lib/nib #{source}"
@@ -104,8 +108,8 @@ compileStylus = (source, target, options) ->
 compileHandlebars = (source, target, options) ->
 	console.log "Compiling HBS template: /#{target}"
 
-	muffin.mkdir_p path.dirname(target), 0x1ED, (err) ->
-		if err
+	fs.mkdir path.dirname(target), 0o755, (err) ->
+		if err?.errno isnt 47
 			console.log err
 			return
 		q = muffin.exec "handlebars #{source} -f #{target}"
