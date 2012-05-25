@@ -24,10 +24,12 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
+	<!--
 	<script src="javascripts/vendor.js"></script>
 	<script src="javascripts/app.js"></script>
 	<script>require('initialize');</script>
-
+	-->
+	<script data-main="javascripts/application" src="javascripts/common/require.js"></script>
 </head>
 <body>
 	<div class="v-align">
@@ -38,9 +40,9 @@
 			<h6>Fuse pouere arcu eros rhoncus sagittis. Lorem ipsum dolor sit amet, consec telur adipi scing elit.</h6>
 			<input type="text" placeholder="Username" name="username" class="input-text" tabindex="1" />
 			<input type="password" placeholder="Password" name="password" class="input-text" tabindex="2" />
-			<input type="submit" value="Sign in" class="nice radius white button" />
-			<input type="checkbox" name="rememberMe" tabindex="4" />
-			<label for="rememberMe" tabindex="3">Remember Me</label>
+			<input type="submit" value="Sign in" class="nice radius white button" tabindex="4" />
+			<input type="checkbox" name="rememberMe" tabindex="3" />
+			<label for="rememberMe">Remember Me</label>
 		</form>
 	</div>
 </body>
