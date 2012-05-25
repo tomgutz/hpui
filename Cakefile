@@ -1,18 +1,18 @@
+#---Include required libraries---
+fs = require 'fs'
+muffin = require 'muffin' # https://github.com/hornairs/muffin
+Q = require 'q' # https://github.com/kriskowal/q
+path = require 'path'
+
+dir = 'temp'
+build = 'build'
+
 #---Options---
 option '-w', '--watch', 'continue to watch the files and rebuild them when they change'
 option '-m', '--minify', 'minify client side scripts'
 # todo: hook up the the info var to -l compile option
 #option '-l', '--log', 'echo compilation logs'
 
-
-#---Include required libraries---
-muffin = require 'muffin' # https://github.com/hornairs/muffin
-Q = require 'q' # https://github.com/kriskowal/q
-fs = require 'fs' # http://nodejs.org/api/fs.html
-path = require 'path'
-
-dir = 'temp'
-build = 'build'
 
 task 'build', 'Build all', (options) ->
 	invoke 'clean'
@@ -33,7 +33,8 @@ task 'build.basic', 'Build the libs, app, and copy assets', (options) ->
 	invoke 'copy.asset'
 	
 task 'clean', 'Clean the build folder', (options) ->
-	muffin.exec "rm -fr #{build}"
+	fs.rmdir build, (err) ->
+		console.log err if err.errno isnt 34
 
 task 'copy.asset', 'Copy assets', (options) ->
 	muffin.run
