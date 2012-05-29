@@ -9,22 +9,21 @@ build = 'build'
 
 #---Options---
 option '-w', '--watch', 'continue to watch the files and rebuild them when they change'
-option '-m', '--minify', 'minify client side scripts'
 option '-p', '--production', 'build for production (will optimize code)'
 # todo: hook up the the info var to -l compile option
 #option '-l', '--log', 'echo compilation logs'
 
 task 'build', 'Build all + package', (options) ->
 	invoke 'build.setup'
-	invoke 'build.basic'
+	invoke 'build.core'
 	if options.production
 		invoke 'package.production'
 	else
 		invoke 'package.dev'
 
-task 'build.basic', 'Build the libs, app, and copy assets', (options) ->	
+task 'build.core', 'Build the libs, app, and copy assets', (options) ->	
 	invoke 'precompile.all'
-	invoke 'copy.requirejs'
+	invoke 'copy.lib'
 	invoke 'copy.asset'
 	
 task 'build.setup', 'Setup the env, clean up old builds', (options) ->
@@ -38,7 +37,7 @@ task 'copy.asset', 'Copy assets', (options) ->
 		map:
 			'./app/asset/(.*)': (matches) -> muffin.copyFile matches[0], "./#{dir}/#{matches[1]}", options
 			
-task 'copy.requirejs', 'Copy require.js', (options) ->
+task 'copy.lib', 'Copy require.js', (options) ->
 	muffin.copyFile './node_modules/requirejs/require.js', "./#{dir}/javascripts/common/require.js"
 
 task 'precompile.all', 'Build CoffeeScript, Stylus, Handlebars', (options) ->
