@@ -18,12 +18,6 @@ option '-s', '--server', 'start a local server'
 task 'build', 'Build all + package', (options) ->
 	invoke 'build.setup'
 	invoke 'precompile.vendor'
-	if options.production
-		invoke 'package.production'
-	else
-		invoke 'package.dev'
-		invoke 'build.server'
-		invoke 'server.start'
 	
 task 'build.setup', 'Setup the env, clean up old builds', (options) ->
 	fs.rmrfSync build, (err) ->

@@ -9,3 +9,4 @@ app.configure ->
 	app.use express.static "#{__dirname}/../../temp"
 
 app.listen 3000
+console.log 'server started'
