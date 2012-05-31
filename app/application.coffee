@@ -21,5 +21,7 @@ define [
 ], ($, _, Backbone, chaplin) ->
 	
 	class MyApplication
+		initialize: ->
+			console.log 'in MyApplication'
 	
 	Object.freeze? this

@@ -3,7 +3,6 @@ fs = require 'fs-extra'
 muffin = require 'muffin' # https://github.com/hornairs/muffin
 Q = require 'q' # https://github.com/kriskowal/q
 path = require 'path'
-{spawn, exec} = require 'child_process'
 
 dir = 'temp'
 build = 'build'
@@ -11,7 +10,6 @@ build = 'build'
 #---Options---
 option '-w', '--watch', 'continue to watch the files and rebuild them when they change'
 option '-p', '--production', 'build for production (will optimize code)'
-option '-s', '--server', 'start a local server'
 # todo: hook up the the info var to -l compile option
 #option '-l', '--log', 'echo compilation logs'
 
@@ -62,7 +60,8 @@ task 'precompile.hbs', 'Build Handlebars', (options) ->
 
 task 'copy.lib', 'Copy require.js', (options) ->
 	muffin.copyFile('./node_modules/requirejs/require.js', "./#{dir}/javascripts/common/require.js").then ->
-		invoke 'copy.asset'
+		muffin.copyFile('./node_modules/handlebars/lib/handlebars.js', "./#{dir}/javascripts/common/handlebars.js").then ->
+			invoke 'copy.asset'
 
 task 'copy.asset', 'Copy assets', (options) ->
 	muffin.run

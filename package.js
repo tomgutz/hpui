@@ -22,7 +22,7 @@
 	//in a separate configuration, set this property to the location of that
 	//main JS file. The first requirejs({}), require({}), requirejs.config({}),
 	//or require.config({}) call found in that file will be used.
-	//mainConfigFile: '../some/path/to/main.js',
+	mainConfigFile: 'temp/javascripts/initialize.js',
 
 	//Set paths for modules. If relative paths, set relative to baseUrl above.
 	//If a special value of "empty:" is used for the path value, then that
@@ -31,11 +31,11 @@
 	//Useful to map module names that are to resources on a CDN or other
 	//http: URL when running in the browser and during an optimization that
 	//file should be skipped because it has no dependencies.
-	paths: {
-		"jquery": "common/jquery-1.7.2",
-		"backbone": "common/backbone-0.9.2",
-		"underscore": "common/underscore-1.3.3"
-	},
+	//paths: {
+	//	"jquery": "common/jquery-1.7.2",
+	//	"backbone": "common/backbone-0.9.2",
+	//	"underscore": "common/underscore-1.3.3"
+	//},
 
 	//Configure CommonJS packages. See http://requirejs.org/docs/api.html#packages
 	//for more information.
@@ -63,7 +63,7 @@
 	//- "closure.keepLines": Same as closure option, but keeps line returns
 	//in the minified files.
 	//- "none": no minification will be done.
-	optimize: "uglify",
+	optimize: "none",//"uglify",
 
 	//If using UglifyJS for script optimization, these config options can be
 	//used to pass configuration values to UglifyJS.
@@ -71,7 +71,7 @@
 	uglify: {
 		toplevel: true,
 		ascii_only: true,
-		beautify: false
+		beautify: true
 	},
 
 	//If using Closure Compiler for script optimization, these config options
@@ -205,7 +205,7 @@
 	//dependencies will be included in the module's file when the build is
 	//done. If that module or any of its dependencies includes i18n bundles,
 	//only the root bundles will be included unless the locale: section is set above.
-	modules: [
+	//modules: [
 		//Just specifying a module name means that module will be converted into
 		//a built file that contains all of its dependencies. If that module or any
 		//of its dependencies includes i18n bundles, they may not be included in the
@@ -225,17 +225,17 @@
 		//	 }
 		//},
 		
-		{
-			name: "common/underscore-1.3.3"
-		},
-		
-		{
-			name: "common/backbone-0.9.2"
-		},
-		
-		{
-			name: "chaplin"
-		},
+		//{
+		//	name: "common/underscore-1.3.3"
+		//},
+		//
+		//{
+		//	name: "common/backbone-0.9.2"
+		//},
+		//
+		//{
+		//	name: "chaplin"
+		//},
 		
 		//{
 		//	name: "app",
@@ -275,14 +275,14 @@
 		//		  "foo/bar/bot"
 		//	  ]
 		//}
-	],
+	//],
 
 	//If you only intend to optimize a module (and its dependencies), with
 	//a single file as the output, you can specify the module options inline,
 	//instead of using the 'modules' section above. 'exclude',
 	//'excludeShallow' and 'include' are all allowed as siblings to name.
 	//The name of the optimized file is specified by 'out'.
-	//name: "foo/bar/bop",
+	name: "initialize",
 	//include: ["foo/bar/bee"],
 	//out: "path/to/optimized-file.js",
 
