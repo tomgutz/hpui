@@ -27,7 +27,7 @@
 		"q-fs": "0.1.24",
 		"fs-extra": "0.0.4",
 		"muffin": "~0.5",
-		"requirejs": "1.0.8",
+		"requirejs": "2.0.0",
 		"express": "~3.0"
 	}
 }

@@ -111,11 +111,11 @@ task 'copy.asset', 'Copy assets', (options) ->
 			else
 				invoke 'package.dev'
 				invoke 'build.server'
-				invoke 'server.start'
+				#invoke 'server.start'
 
 task 'package.production', 'Package using r.js', (options) ->
 	console.log "Packaging for development"
-	q = muffin.exec "./node_modules/requirejs/bin/r.js -o ./package.js"
+	q = muffin.exec "node ./node_modules/requirejs/bin/r.js -o ./package.js"
 	Q.when q[1], outputResult
 
 task 'package.dev', 'Package for dev (simply copy over the files)', (options) ->
